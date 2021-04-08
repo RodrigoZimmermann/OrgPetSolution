@@ -1,0 +1,2 @@
+C:\Users\rodri\Desktop\OrgPetSolution-20200515T235500Z-001\OrgPetSolution\MVCLayer\obj\Debug\MVCLayer.csprojAssemblyReference.cache
+C:\Users\rodri\Desktop\OrgPetSolution-20200515T235500Z-001\OrgPetSolution\MVCLayer\obj\Debug\MVCLayer.csproj.CoreCompileInputs.cache

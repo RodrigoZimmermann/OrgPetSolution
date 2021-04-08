@@ -1,0 +1,4 @@
+C:\Users\moc\source\repos\OrgPetSolution\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\moc\source\repos\OrgPetSolution\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\rodri\Desktop\OrgPetSolution-20200515T235500Z-001\OrgPetSolution\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\rodri\Desktop\OrgPetSolution-20200515T235500Z-001\OrgPetSolution\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
