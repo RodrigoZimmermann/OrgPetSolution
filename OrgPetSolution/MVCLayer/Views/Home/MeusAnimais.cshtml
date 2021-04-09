@@ -1,0 +1,93 @@
+﻿@using Domain
+
+@model List<Animal>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">
+                Seus animais
+
+            </div>
+            <div class="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Nomes</th>
+                            <th class="text-center">Local</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (Animal animal in this.Model)
+                        {
+                            <tr>
+                                <td class="text-center text-muted">#@animal.ID</td>
+                                <td>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-3">
+                                                <div class="widget-content-left">
+                                                    <img width="40" class="circle" src="data:image/*;base64,@(Convert.ToBase64String(animal.Foto))" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">@animal.Nome</div>
+                                                <div class="widget-subheading opacity-7">@animal.Raça</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">@animal.Usuario.Endereco</td>
+                                <td class="text-center">
+
+                                    @switch (animal.Status)
+                                    {
+                                        case Domain.Enums.Status.Desaparecido:
+                                            <div class="badge badge-danger">Desaparecido</div>
+                                            break;
+                                        case Domain.Enums.Status.Perdido:
+                                            <div class="badge badge-warning">Perdido</div>
+                                            break;
+                                        case Domain.Enums.Status.Resgatado:
+                                            <div class="badge badge-success">Resgatado</div>
+                                            break;
+                                        case Domain.Enums.Status.Doado:
+                                            <div class="badge badge-success">Doado</div>
+                                            break;
+                                        case Domain.Enums.Status.LarTemporario:
+                                            <div class="badge badge-warning">Lar Temporário</div>
+                                            break;
+                                        case Domain.Enums.Status.Adotado:
+                                            <div class="badge badge-success">Adotado</div>
+                                            break;
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" onclick="IrDetalhes(@animal.ID)" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Opções</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-block text-center card-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function IrDetalhes( idAnimal) {
+         var url = '@Url.Action("Detalhes", "Home", new { id = "__id__" })';
+    window.location.href = url.replace('__id__', idAnimal);
+    }
+</script>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Create";
+
+}
+
+<div class="app-main__inner">
+
+
+
+
+
+    <div class="tab-pane tabs-animation fade active show" id="tab-content-1" role="tabpanel">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Tabela Cadastro Usuario</h5>
+                <form method="post" class="">
+                    <div class="position-relative row form-group">
+                        <label for="TextBoxNomeCliente" class="col-sm-2 col-form-label">Nome</label>
+                        <div class="col-sm-10"><input name="Nome" id="TextBoxNomeCliente" placeholder="José" type="text" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="DataNascimentoCliente" class="col-sm-2 col-form-label">Nascimento</label>
+                        <div class="col-sm-10"><input name="DataNascimento" id="NascimentoCliente" placeholder="00/00/0000" type="date" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="CPFCliente" class="col-sm-2 col-form-label">CPF</label>
+                        <div class="col-sm-10"><input name="CPF" id="CPFCliente" placeholder="000.000.000-00" type="text" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="TelefoneCliente" class="col-sm-2 col-form-label">RG</label>
+                        <div class="col-sm-10"><input name="RG" id="RGCliente" placeholder="0.000.000" type="text" class="form-control"></div>
+                    </div>
+                    <div class="position-relative row form-group">
+                        <label for="TextBoxNomeCliente" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10"><input name="Email" id="TextBoxNomeCliente" placeholder="jose@email.com" type="email" class="form-control"></div>
+                    </div>
+
+                    <div class="position-relative row form-group">
+                        <label for="CelularCliente" class="col-sm-2 col-form-label">Telefone</label>
+                        <div class="col-sm-10"><input name="Telefone" id="TelefoneCliente" placeholder="(00)00000-0000" type="tel" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="CelularCliente" class="col-sm-2 col-form-label">Celular</label>
+                        <div class="col-sm-10"><input name="Celular" id="CelularCliente" placeholder="(00)00000-0000" type="tel" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="CelularCliente" class="col-sm-2 col-form-label">Senha</label>
+                        <div class="col-sm-10"><input name="Senha" id="SenhaCliente" placeholder="********" type="password" class="form-control"></div>
+                    </div>
+
+
+
+                    <div class="position-relative row form-group">
+                        <label for="SenhaCliente" class="col-sm-2 col-form-label">Endereço</label>
+                        <div class="col-sm-10"><input name="Endereco" id="EndereçoCliente" placeholder="Rua XV Novembro, Centro, Blumenau, SC." type="text" class="form-control"></div>
+                    </div><div class="position-relative row form-group">
+                        <label for="SenhaCliente" class="col-sm-2 col-form-label">CEP</label>
+                        <div class="col-sm-10"><input name="CEP" id="CepCliente" placeholder="89010-000" type="text" class="form-control"></div>
+                    </div>
+
+                    <div class="position-relative row form-group">
+                        <label for="checkbox2" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+
+                        </div>
+                    </div>
+                    <div class="position-relative row form-check">
+                        <div class="col-sm-10 offset-sm-2">
+                            <input class="btn-wide btn btn-success" type="submit" name="name" value="Cadastrar" />
+                        </div>
+                    </div>
+
+                    @if (ViewBag.Erros != null)
+                    {
+                        <p>
+                            @Html.Raw(ViewBag.Erros)
+                        </p>
+                    }
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

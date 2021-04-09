@@ -3,7 +3,11 @@ using BLL;
 using Domain;
 using MVCLayer.Models;
 using MvcPresentationLayer.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MVCLayer.Controllers
@@ -58,6 +62,7 @@ namespace MVCLayer.Controllers
             if (usuario != null)
             {
                 Cookie.Set(usuario.ID.ToString());
+                return RedirectToAction("Lista", "Home");
             }
             ViewBag.Erro = "Email e/ou senha incorretos.";
             return View();

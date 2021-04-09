@@ -1,13 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DAL;
 using Domain;
+using Domain.Enums;
 
 namespace BLL
 {
     public class AnimalBLL : IAnimalService
     {
+        public void RegistrarAnimalResgatado(int id, Status status)
+        {
+            using (PetContext ctx = new PetContext())
+            {
+                Animal animal = ctx.Animais.FirstOrDefault(c => c.ID == id);
+                animal.Status = status;
+                ctx.SaveChanges();
+
+            }
+        }
+
         List<ErrorField> erros = new List<ErrorField>();
         public void Inserir(Animal animal)
         {
@@ -91,44 +102,6 @@ namespace BLL
             }
             #endregion
 
-            #region Tipo
-            if (string.IsNullOrWhiteSpace(animal.Tipo.ToString()))
-            {
-                ErrorField error = new ErrorField()
-                {
-                    Error = "Informe se o seu animal é um cachorro ou um gato.",
-                    PropertyName = "Tipo"
-                };
-                erros.Add(error);
-            }
-            else
-            {
-                if (animal.Tipo.ToString().Length < 3 || animal.Tipo.ToString().Length > 20)
-                {
-                    ErrorField error = new ErrorField()
-                    {
-                        Error = "Tipo de animal com número de caracteres excedido.",
-                        PropertyName = "Tipo"
-                    };
-                    erros.Add(error);
-                }
-                else
-                {
-                    for (int i = 0; i < animal.Tipo.ToString().Length; i++)
-                    {
-                        if (!char.IsLetter(animal.Tipo.ToString()[i]) && animal.Tipo.ToString()[i] != ' ')
-                        {
-                            ErrorField error = new ErrorField()
-                            {
-                                Error = "Tipo inválido ou número de espassos excedido.",
-                                PropertyName = "Tipo"
-                            };
-                            break;
-                        }
-                    }
-                }
-            }
-            #endregion
 
             #region Gênero
             if (string.IsNullOrWhiteSpace(animal.Genero.ToString()))
@@ -298,7 +271,7 @@ namespace BLL
             }
             else
             {
-                if (animal.Observacao.ToString().Length < 10 || animal.Observacao.ToString().Length > 255)
+                if (animal.Observacao.Length < 5 || animal.Observacao.Length > 255)
                 {
                     ErrorField error = new ErrorField()
                     {
@@ -560,7 +533,6 @@ namespace BLL
                 throw new PetShopException(erros);
             }
 
-            //Validar Usuário
             using (PetContext pet = new PetContext())
             {
                 pet.Entry<Animal>(animal).State = System.Data.Entity.EntityState.Deleted;
@@ -580,9 +552,24 @@ namespace BLL
         {
             using (PetContext pet = new PetContext())
             {
+                return pet.Animais.Include("Usuario").OrderByDescending(animal => animal.ID).Take(5).ToList();
+            }
+        }
+
+        public List<Animal> LerTodos()
+        {
+            using (PetContext pet = new PetContext())
+            {
                 return pet.Animais.ToList();
             }
         }
 
+        public List<Animal> LerAnimaisUsuariologado(int id)
+        {
+            using (PetContext pet = new PetContext())
+            {
+                return pet.Animais.Include("Usuario").Where(c => c.UsuarioID == id).ToList();
+            }
+        }
     }
 }

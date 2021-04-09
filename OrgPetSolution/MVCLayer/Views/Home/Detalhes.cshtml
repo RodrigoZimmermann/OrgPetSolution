@@ -1,0 +1,276 @@
+﻿@model Domain.Animal
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="tab-pane tabs-animation fade active show" id="tab-content-1" role="tabpanel">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">Tabela do Animal</h5>
+            <form method="post" enctype="multipart/form-data">
+                <div class="position-relative row form-group">
+                    <label for="TextBoxNomeCliente" class="col-sm-2 col-form-label">Nome</label>
+                    <div class="col-sm-10"><input disabled name="Nome" value="@Model.Nome" id="Nome" placeholder="Zeus" type="text" class="form-control"></div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="CPFCliente" class="col-sm-2 col-form-label">Raça</label>
+                    <div class="col-sm-10">
+                        <select disabled class="form-control" name="Raça">
+                            @{
+                                string[] nomes = Enum.GetNames(typeof(Domain.Enums.Raça));
+                                Domain.Enums.Raça r = (Domain.Enums.Raça)Enum.Parse(typeof(Domain.Enums.Raça), Model.Raça);
+                                int numeroRaca = (int)r;
+                            }
+
+                            @for (int i = 0; i < nomes.Length; i++)
+                            {
+                                if (i == numeroRaca)
+                                {
+                                    <option selected value="@i">@nomes[i].Replace("_", " ")</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@nomes[i].Replace("_", " ")</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Cor</label>
+                    <div class="col-sm-10">
+                        <select name="Cor" id="=Cor" disabled class="form-control">
+                            @{
+                                string[] cor = Enum.GetNames(typeof(Domain.Enums.Cor));
+                                Domain.Enums.Cor c = Model.Cor;
+                                int numeroCor = (int)c;
+                            }
+
+                            @for (int i = 0; i < cor.Length; i++)
+                            {
+                                if (i == numeroCor)
+                                {
+                                    <option selected value="@i">@cor[i]</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@cor[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Porte</label>
+                    <div class="col-sm-10">
+                        <select name="Porte" id="Porte" disabled class="form-control">
+                            @{
+                                string[] porte = Enum.GetNames(typeof(Domain.Enums.Porte));
+                                Domain.Enums.Porte p = (Domain.Enums.Porte)Enum.Parse(typeof(Domain.Enums.Porte), Model.Porte.ToString());
+                                int numeroPorte = (int)p;
+                            }
+
+                            @for (int i = 0; i < porte.Length; i++)
+                            {
+                                if (i == numeroPorte)
+                                {
+                                    <option selected value="@i">@porte[i]</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@porte[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Gênero</label>
+                    <div class="col-sm-10">
+                        <select name="Genero" id="Genero" disabled class="form-control">
+                            @{
+                                string[] genero = Enum.GetNames(typeof(Domain.Enums.Genero));
+                                Domain.Enums.Genero g = (Domain.Enums.Genero)Enum.Parse(typeof(Domain.Enums.Genero), Model.Genero.ToString());
+                                int numeroGenero = (int)p;
+                            }
+
+                            @for (int i = 0; i < genero.Length; i++)
+                            {
+                                if (i == numeroGenero)
+                                {
+                                    <option selected value="@i">@genero[i]</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@genero[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="SenhaCliente" class="col-sm-2 col-form-label">Descrição</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" disabled name="Observacao" placeholder="Digite informações sobre o animal perdido..."> @Model.Observacao </textarea>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="exampleFile" class="col-sm-2 col-form-label">Foto do Animal</label>
+                    <div class="col-sm-10">
+                        <div class="img-circle">
+                            <img style="max-width:100px; max-height:100px;" src="data:image/*;base64,@(Convert.ToBase64String(Model.Foto))">
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                </div>
+
+
+                @{
+                    int idUsuario = int.Parse(MvcPresentationLayer.Models.Cookie.Get());
+
+                    if (Model.UsuarioID == idUsuario && Model.Status == Domain.Enums.Status.Desaparecido)
+                    {
+                        <div class="position-relative row form-group">
+                            <label for="exampleFile" class="col-sm-2 col-form-label">Alterar Status</label>
+                            <div class="col-sm-10">
+
+                                <button id="btn1" style="line-height: 2.5;" class="mb-4 mr-4 btn btn-danger">Desaparecido</button>
+
+
+                                <!--
+
+                                <button id="btn1" style="font-size:xx-large" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                    <i class="pe-7s-right-arrow"></i>
+                                </button>
+                                -->
+                                <!--
+                                <button type="button" style="line-height: 2.5; line-grid:create;" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                <i class="pe-7s-right-arrow"></i>
+                                </button>
+                                -->
+
+                                <button onclick="AlterarStatus()" style="line-height: 2.5;" class="mb-4 mr-4 btn btn-success">Encontrado</button>
+                                <small class="form-text text-muted"></small>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+                @if (Model.Status == Domain.Enums.Status.Perdido && Model.UsuarioID.ToString() == MvcPresentationLayer.Models.Cookie.Get())
+                {
+            <div id="divMotivo">
+                <div class="card-title">Informe a procedência do resgate do animal</div>
+                <!-- Button trigger modal -->
+                <button type="button" onclick="RazaoAnimalEncontrado(3)" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Doei este animal.
+                </button>
+                <!-- Button trigger modal -->
+                <button type="button" onclick="RazaoAnimalEncontrado(5)" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Animal está em lar temporário.
+                </button>
+
+                <button type="button" onclick="RazaoAnimalEncontrado(4)" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Adotei este animal.
+                </button>
+
+                <button type="button" onclick="RazaoAnimalEncontrado(2)" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Encontrei o dono.
+                </button>
+            </div>
+                }
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="#exampleModal">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                @if (ViewBag.Erros != null)
+                {
+                    <p>
+                        @ViewBag.Erros
+                    </p>
+                }
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        function RazaoAnimalEncontrado(razao) {
+
+        var teste = new Object();
+        teste.IdAnimal = @Model.ID;
+            teste.razao = razao;
+
+            $.ajax({
+                url: '@Url.Action("RazaoAnimalResgatado","Home")',
+                type: 'POST',
+                data: JSON.stringify(teste),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (x) {
+                        alert(x.Mensagem);
+                    if (x.Sucesso) {
+                        $("#divMotivo").hide();
+                    }
+                },
+            });
+        }
+
+
+    function AlterarStatus() {
+
+        var teste = new Object();
+        teste.IdAnimal = @Model.ID;
+            $.ajax({
+                url: '@Url.Action("AlterarStatusResgatado","Home")',
+                type: 'POST',
+                data: JSON.stringify(teste),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (x) {
+                        alert(x.Mensagem);
+                    if (x.Sucesso) {
+                        $("#btn1").hide();
+                    }
+                },
+            });
+        }
+    </script>
+
+}

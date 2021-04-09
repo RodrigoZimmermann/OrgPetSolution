@@ -8,37 +8,76 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Tabela Cadastro Animal</h5>
-            <form class="">
+            <form method="post" enctype="multipart/form-data">
                 <div class="position-relative row form-group">
                     <label for="TextBoxNomeCliente" class="col-sm-2 col-form-label">Nome</label>
-                    <div class="col-sm-10"><input name="password" id="TextBoxNomeCliente" placeholder="Zeus" type="NomeCliente" class="form-control"></div>
-                </div><div class="position-relative row form-group">
-                    <label for="DataNascimentoCliente" class="col-sm-2 col-form-label">Nascimento</label>
-                    <div class="col-sm-10"><input name="CPFCliente" id="CPFCliente" placeholder="00/00/0000" type="CPF" class="form-control"></div>
-                </div><div class="position-relative row form-group">
-                    <label for="CPFCliente" class="col-sm-2 col-form-label">Raça</label>
-                    <div class="col-sm-10"><input name="CPFCliente" id="CPFCliente" placeholder="PitBull" type="CPF" class="form-control"></div>
-                </div><div class="position-relative row form-group">
-                    <label for="TelefoneCliente" class="col-sm-2 col-form-label">Castrado ?</label>
-                    <div class="col-sm-10"><input name="TelefoneCliente" id="TelefoneCliente" placeholder="SIM - NÃO" type="telefone" class="form-control"></div>
-                </div><div class="position-relative row form-group">
-                    <label for="CelularCliente" class="col-sm-2 col-form-label">MicroChip</label>
-                    <div class="col-sm-10"><input name="TelefoneCliente" id="TelefoneCliente" placeholder="" type="telefone" class="form-control"></div>
-                </div><div class="position-relative row form-group">
-                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Cor</label>
-                    <div class="col-sm-10"><select name="EnderecoCliente" id="EnderecoCliente" class="form-control"></select></div>
+                    <div class="col-sm-10"><input name="Nome" id="Nome" placeholder="Zeus" type="text" class="form-control"></div>
                 </div>
                 <div class="position-relative row form-group">
-                    <label for="SenhaCliente" class="col-sm-2 col-form-label">Descrição</label>
-                    <div class="col-sm-10"><input name="Senha" id="SenhaCliente" placeholder="" type="Senha" class="form-control"></div>
+                    <label for="CPFCliente" class="col-sm-2 col-form-label">Raça</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Raça">
+                            <option value="0">Vira-Lata</option>
+                            <option value="1">Poodle</option>
+                            <option value="2">Pinscher</option>
+                            <option value="3">Yorkshire</option>
+                            <option value="4">Labrador</option>
+                            <option value="5">Shih Tzu</option>
+                            <option value="6">Pug</option>
+                            <option value="7">Golden Retriever</option>
+                            <option value="8">Rottweiler</option>
+                        </select>
+                    </div>
                 </div>
 
+                
 
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Cor</label>
+                    <div class="col-sm-10">
+                        <select name="Cor" id="Cor" class="form-control">
+                            <option value="1">Marrom</option>
+                            <option value="2">Preto</option>
+                            <option value="4">Branco</option>
+                            <option value="8">Caramelo</option>
+                            <option value="16">Amarelo</option>
+                            <option value="32">Mix</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Porte</label>
+                    <div class="col-sm-10">
+                        <select name="Porte" id="Porte" class="form-control">
+                            <option value="0">Pequeno</option>
+                            <option value="1">Médio</option>
+                            <option value="2">Grande</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Gênero</label>
+                    <div class="col-sm-10">
+                        <select name="Porte" id="Porte" class="form-control">
+                            <option value="0">Masculino</option>
+                            <option value="1">Feminino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="SenhaCliente" class="col-sm-2 col-form-label">Descrição</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Observacao" placeholder="Digite informações sobre o animal perdido..."></textarea>
+                    </div>
+                </div>
 
                 <div class="position-relative row form-group">
                     <label for="exampleFile" class="col-sm-2 col-form-label">Foto do Animal</label>
                     <div class="col-sm-10">
-                        <input name="file" id="exampleFile" type="file" class="form-control-file">
+                        <input name="ImagemAnimal" id="ImagemAnimal" type="file" class="form-control-file">
                         <small class="form-text text-muted"></small>
                     </div>
                 </div>
@@ -54,6 +93,14 @@
                         <button class="btn-wide btn btn-success">Cadastrar</button>
                     </div>
                 </div>
+
+                @if (ViewBag.Erros != null)
+                {
+                    <p>
+                        @ViewBag.Erros
+                    </p>
+                }
+
             </form>
         </div>
     </div>

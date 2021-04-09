@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="tab-pane tabs-animation fade active show" id="tab-content-1" role="tabpanel">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">Tabela Cadastro Animal</h5>
+
+
+            <form method="post" enctype="multipart/form-data">
+
+
+                <div class="position-relative row form-group">
+                    <label for="exampleFile" class="col-sm-2 col-form-label">Foto do Animal</label>
+                    <div class="col-sm-10">
+                        <input name="ImagemAnimal" id="ImagemAnimal" type="file" class="form-control-file">
+                        <small class="form-text text-muted"></small>
+                        <input type="button" id="btnUpload" value="Upload Files" />
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <div id="divTeste" class="col-sm-10">
+                    </div>
+                </div>
+
+
+                <div class="position-relative row form-group">
+                    <label for="TextBoxNomeCliente" class="col-sm-2 col-form-label">Nome</label>
+                    <div class="col-sm-10"><input name="Nome" id="Nome" placeholder="Zeus" type="text" class="form-control"></div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="CPFCliente" class="col-sm-2 col-form-label">Raça</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="Raça">
+                            <option value="0">Vira-Lata</option>
+                            <option value="1">Poodle</option>
+                            <option value="2">Pinscher</option>
+                            <option value="3">Yorkshire</option>
+                            <option value="4">Labrador</option>
+                            <option value="5">Shih Tzu</option>
+                            <option value="6">Pug</option>
+                            <option value="7">Golden Retriever</option>
+                            <option value="8">Rottweiler</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="TelefoneCliente" class="col-sm-2 col-form-label">Castrado</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" value="true" class="checkbox" name="EhCastrado" />
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Cor</label>
+                    <div class="col-sm-10">
+                        <select name="Cor" id="Cor" class="form-control">
+                            <option value="1">Marrom</option>
+                            <option value="2">Preto</option>
+                            <option value="4">Branco</option>
+                            <option value="8">Caramelo</option>
+                            <option value="16">Amarelo</option>
+                            <option value="32">Mix</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Porte</label>
+                    <div class="col-sm-10">
+                        <select name="Porte" id="Porte" class="form-control">
+                            <option value="0">Pequeno</option>
+                            <option value="1">Médio</option>
+                            <option value="2">Grande</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="EnderecoCliente" class="col-sm-2 col-form-label">Gênero</label>
+                    <div class="col-sm-10">
+                        <select name="Porte" id="Porte" class="form-control">
+                            <option value="0">Masculino</option>
+                            <option value="1">Feminino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="SenhaCliente" class="col-sm-2 col-form-label">Descrição</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Observacao" placeholder="Digite informações sobre o animal perdido..."></textarea>
+                    </div>
+                </div>
+
+                <div class="position-relative row form-group">
+                    <label for="checkbox2" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+
+                    </div>
+                </div>
+                <div class="position-relative row form-check">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button class="btn-wide btn btn-success">Cadastrar</button>
+                    </div>
+                </div>
+
+                @if (ViewBag.Erros != null)
+                {
+                    <p>
+                        @ViewBag.Erros
+                    </p>
+                }
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#btnUpload').click(function () {
+
+                // Checking whether FormData is available in browser
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $("#ImagemAnimal").get(0);
+                    var files = fileUpload.files;
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    $.ajax({
+                        url: '/Home/EncontreiAnimalVisionCloud',
+                        type: "POST",
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data
+                        data: fileData,
+                        success: function (dados) {
+                            $(dados).each(function (i) {
+                                var pesquisaLink = dados[i].replace(" ", "+").replace(" ", "+").replace(" ", "+").replace(" ", "+");
+                                $("#divTeste").append("<a style='display:block;' href='http://www.google.com/search?q=" + pesquisaLink + "'>" + dados[i] + "</a>");
+                            });
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
+                        }
+                    });
+                } else {
+                    alert("FormData is not supported.");
+                }
+            });
+        });
+    </script>
+
+}

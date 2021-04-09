@@ -1,9 +1,12 @@
 ﻿using BLL.Extensions;
 using DAL;
 using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -269,6 +272,7 @@ namespace BLL
                 }
             }
             #endregion
+
             if (erros.Count != 0)
             {
                 throw new PetShopException(erros);
@@ -515,7 +519,6 @@ namespace BLL
                     Error = "Senha deve ser informada."
                 };
                 erros.Add(error);
-
             }
             else if (senha.Length < 5 || senha.Length > 15)
             {
@@ -525,7 +528,6 @@ namespace BLL
                     Error = "Senha deve conter entre 5 e 15 caracteres."
                 };
                 erros.Add(error);
-
             }
             else if (!VerificarSenhaValida(senha))
             {
@@ -541,8 +543,10 @@ namespace BLL
             {
                 throw new PetShopException(erros);
             }
+            //string senhaHasheada = HashUtils.HashPassword(senha);
             using (PetContext ctx = new PetContext())
             {
+                //select * from usuarios where username = 'ronaldo' and passoword = '09ur98ucvsf89f'
                 Usuario user =
                     ctx.Usuario.FirstOrDefault(u => u.Email == email && u.Senha == senha);
                 return user;

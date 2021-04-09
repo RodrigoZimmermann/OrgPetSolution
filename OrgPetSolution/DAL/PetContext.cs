@@ -8,7 +8,7 @@ namespace DAL
 {
     public class PetContext : DbContext
     {
-        public PetContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=30")
+        public PetContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\moc\Documents\PetOrg.mdf;Integrated Security=True;Connect Timeout=30")
         {
             //USADO APENAS PARA AMBIENTE DE DESENVOLVIMENTO
             //APAGAR OU COMENTAR ESTA LINHA ANTES DE JOGAR O CÓDIGO PRA PRODUÇÃO

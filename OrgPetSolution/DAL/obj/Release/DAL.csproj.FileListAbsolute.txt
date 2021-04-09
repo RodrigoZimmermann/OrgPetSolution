@@ -1,0 +1,14 @@
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\DAL.dll.config
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\DAL.dll
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\DAL.pdb
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\Domain.dll
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\EntityFramework.dll
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\Domain.pdb
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\EntityFramework.xml
+C:\Users\moc\Desktop\OrgPetSolution\DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\moc\Desktop\OrgPetSolution\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\moc\Desktop\OrgPetSolution\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\moc\Desktop\OrgPetSolution\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\moc\Desktop\OrgPetSolution\DAL\obj\Release\DAL.dll
+C:\Users\moc\Desktop\OrgPetSolution\DAL\obj\Release\DAL.pdb

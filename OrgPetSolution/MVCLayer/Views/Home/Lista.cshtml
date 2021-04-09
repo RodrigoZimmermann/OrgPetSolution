@@ -1,7 +1,12 @@
-﻿
+﻿@using Domain
+
+@model List<Animal>
+
 @{
     ViewBag.Title = "Lista";
 }
+
+
 
 <div class="row">
     <div class="col-md-12">
@@ -22,206 +27,158 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center text-muted">#01</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+
+                        @foreach (Animal animal in this.Model)
+                        {
+                            <tr>
+                                <td class="text-center text-muted">#@animal.ID</td>
+                                <td>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-3">
+                                                <div class="widget-content-left">
+                                                    <img width="40" class="circle" src="data:image/*;base64,@(Convert.ToBase64String(animal.Foto))" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">@animal.Nome</div>
+                                                <div class="widget-subheading opacity-7">@animal.Raça</div>
                                             </div>
                                         </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Thor</div>
-                                            <div class="widget-subheading opacity-7">ChalChal</div>
-                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Itoupava Norte, Blumenau.</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">SEGURO</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Opções</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">#02</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Rex</div>
-                                            <div class="widget-subheading opacity-7">PitBull</div>
-                                        </div>
+                                </td>
+                                <td class="text-center">@animal.Usuario.Endereco</td>
+                                <td class="text-center">
+
+                                    @switch (animal.Status)
+                                    {
+                                        case Domain.Enums.Status.Desaparecido:
+                                            <div class="badge badge-danger">Desaparecido</div>
+                                            break;
+                                        case Domain.Enums.Status.Perdido:
+                                            <div class="badge badge-warning">Perdido</div>
+                                            break;
+                                        case Domain.Enums.Status.Resgatado:
+                                            <div class="badge badge-success">Resgatado</div>
+                                            break;
+                                        case Domain.Enums.Status.Doado:
+                                            <div class="badge badge-success">Doado</div>
+                                            break;
+                                        case Domain.Enums.Status.LarTemporario:
+                                            <div class="badge badge-warning">Lar Temporário</div>
+                                            break;
+                                        case Domain.Enums.Status.Adotado:
+                                            <div class="badge badge-success">Adotado</div>
+                                            break;
+                                    }
+
+                                </td>
+                                <td class="text-center">
+                                    <div class="img-circle">
+                                       <button type="button" onclick="IrDetalhes(@animal.ID)" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Detalhes</button>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Itoupava Norte, Blumenau.</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">SEGURO</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Opções</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">#03</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="assets/images/avatars/2.jfif" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Zeus</div>
-                                            <div class="widget-subheading opacity-7">Vira-lata</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Itoupava Central</td>
-                            <td class="text-center">
-                                <div class="badge badge-danger">DESAPARECIDO</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Opções</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">#04</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">Dog</div>
-                                            <div class="widget-subheading opacity-7">Vira-Lata</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">Itpupava Central</td>
-                            <td class="text-center">
-                                <div class="badge badge-warning ">Notificação</div>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Opções</button>
-                            </td>
-                        </tr>
+                                </td>
+
+                                <td class="text-center">
+
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
             <div class="d-block text-center card-footer">
-                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                <button class="btn-wide btn btn-success">Savar</button>
             </div>
         </div>
     </div>
 </div>
 
+@{ 
+
+    List<Animal> animais = new BLL.AnimalBLL().LerTodos();
+    double  total = animais.Count;
+    double  totaisAnimaisDesaparecidos = animais.Where(c => c.Status == Domain.Enums.Status.Desaparecido).Count();
+    double  totaisAnimaisPerdidos = animais.Where(c => c.Status == Domain.Enums.Status.Perdido || c.Status == Domain.Enums.Status.LarTemporario).Count();
+    double  totaisAnimaisResgatados = animais.Where(c => c.Status == Domain.Enums.Status.Resgatado || c.Status == Domain.Enums.Status.Doado || c.Status == Domain.Enums.Status.Adotado).Count();
+
+    double porcentagemDesaparecido = (totaisAnimaisDesaparecidos/total) * 100;
+    double porcentagemPerdido = (totaisAnimaisPerdidos/total) * 100      ;
+    double porcentagemResgatado = (totaisAnimaisResgatados / total) * 100; 
+
+    
+
+}
+
+
 <div class="row">
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-4">
         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
             <div class="widget-content">
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left pr-2 fsize-1">
-                        <div class="widget-numbers mt-0 fsize-3 text-danger">20</div>
+                        <div class="widget-numbers mt-0 fsize-3 text-danger">@porcentagemDesaparecido.ToString("N2")%</div>
                     </div>
                     <div class="widget-content-right w-100">
                         <div class="progress-bar-xs progress">
-                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="@porcentagemDesaparecido" aria-valuemin="0" aria-valuemax="100" style="width: @Convert.ToInt32(porcentagemDesaparecido)%;"></div>
                         </div>
                     </div>
                 </div><div class="widget-content-outer">
 
                     <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Desaparecido(s)</div>
+                        <div class="text-muted opacity-6">Desaparecidos</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-4">
         <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
             <div class="widget-content">
                 <div class="widget-content-outer">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-success">40%</div>
+                            <div class="widget-numbers mt-0 fsize-3 text-warning">@porcentagemPerdido.ToString("N2")%</div>
                         </div>
                         <div class="widget-content-right w-100">
                             <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="@porcentagemPerdido" aria-valuemin="0" aria-valuemax="100" style="width: @Convert.ToInt32(porcentagemPerdido)%;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Seguros</div>
+                        <div class="text-muted opacity-6">Perdidos</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-4">
         <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
             <div class="widget-content">
                 <div class="widget-content-outer">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-warning">20%</div>
+                            <div class="widget-numbers mt-0 fsize-3 text-success"">@porcentagemResgatado.ToString("N2")%</div>
                         </div>
                         <div class="widget-content-right w-100">
                             <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="@porcentagemResgatado" aria-valuemin="0" aria-valuemax="100" style="width: @Convert.ToInt32(porcentagemResgatado)%;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Norificações</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-info mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-info">5%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 5%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Ajuda totais</div>
+                        <div class="text-muted opacity-6">Resgatados</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@{
-    ViewBag.Title = "Lista";
-}
 
-<h2>Lista</h2>
-
+<script type="text/javascript">
+    function IrDetalhes( idAnimal) {
+         var url = '@Url.Action("Detalhes", "Home", new { id = "__id__" })';
+    window.location.href = url.replace('__id__', idAnimal);
+    }
+</script>

@@ -45,6 +45,7 @@
     <Compile Include="Enums\Cor.cs" />
     <Compile Include="Enums\Genero.cs" />
     <Compile Include="Enums\Porte.cs" />
+    <Compile Include="Enums\Raça.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TipoAnimal.cs" />
     <Compile Include="ErrorField.cs" />

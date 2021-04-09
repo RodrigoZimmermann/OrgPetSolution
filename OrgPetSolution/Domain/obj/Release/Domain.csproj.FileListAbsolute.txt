@@ -1,0 +1,5 @@
+C:\Users\moc\Desktop\OrgPetSolution\Domain\bin\Release\Domain.dll
+C:\Users\moc\Desktop\OrgPetSolution\Domain\bin\Release\Domain.pdb
+C:\Users\moc\Desktop\OrgPetSolution\Domain\obj\Release\Domain.csproj.CoreCompileInputs.cache
+C:\Users\moc\Desktop\OrgPetSolution\Domain\obj\Release\Domain.dll
+C:\Users\moc\Desktop\OrgPetSolution\Domain\obj\Release\Domain.pdb

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Domain.Enums
 {
     public enum Status
     {
-        Perdido = 0,
-        Localizado = 1,
-        Entregue = 2
+        Desaparecido = 0,
+        Perdido = 1,
+        Resgatado = 2,
+        Doado = 3,
+        Adotado = 4,
+        LarTemporario = 5
     }
 }
